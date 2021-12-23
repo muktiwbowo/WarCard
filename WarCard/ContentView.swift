@@ -9,8 +9,42 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ZStack{
+            Image("background")
+            VStack{
+                Spacer()
+                Image("logo")
+                Spacer()
+                HStack{
+                    Spacer()
+                    Image("card2")
+                    Spacer()
+                    Image("card3")
+                    Spacer()
+                }
+                Spacer()
+                Button(action: {
+                    print("clicked")
+                }, label: {
+                    Image("dealbutton")
+                })
+                Spacer()
+                HStack{
+                    Spacer()
+                    VStack{
+                        Text("Player")
+                        Text("0").padding(.vertical)
+                    }
+                    Spacer()
+                    VStack{
+                        Text("CPU")
+                        Text("0").padding(.vertical)
+                    }
+                    Spacer()
+                }.foregroundColor(.white).font(.title)
+                Spacer()
+            }
+        }
     }
 }
 
