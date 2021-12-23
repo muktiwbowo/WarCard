@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var scorePlayer = 0
+    @State var scoreCPU = 0
+    @State var cardLeft = 2
+    @State var cardRight = 4
+    
     var body: some View {
         ZStack{
             Image("background")
@@ -17,14 +22,20 @@ struct ContentView: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    Image("card2")
+                    Image("card"+String(cardLeft))
                     Spacer()
-                    Image("card3")
+                    Image("card"+String(cardRight))
                     Spacer()
                 }
                 Spacer()
                 Button(action: {
-                    print("clicked")
+                    cardLeft = Int.random(in: 2...14)
+                    cardRight = Int.random(in: 2...14)
+                    if cardLeft == cardRight {
+                        scorePlayer += 1
+                    }else{
+                        scoreCPU += 1
+                    }
                 }, label: {
                     Image("dealbutton")
                 })
@@ -33,12 +44,12 @@ struct ContentView: View {
                     Spacer()
                     VStack{
                         Text("Player")
-                        Text("0").padding(.vertical)
+                        Text(String(scorePlayer)).padding(.vertical)
                     }
                     Spacer()
                     VStack{
                         Text("CPU")
-                        Text("0").padding(.vertical)
+                        Text(String(scoreCPU)).padding(.vertical)
                     }
                     Spacer()
                 }.foregroundColor(.white).font(.title)
